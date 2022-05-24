@@ -99,28 +99,20 @@ void Scene::start_frame()
 	level = 0;
 	Level = 0;
 	putimage(0, 0, &bk);
-	TCHAR s1[20],s2[20]; // 字符串
-	setbkmode(TRANSPARENT); // 文字透明显示
-	_stprintf_s(s1, _T("抗疫有我")); // 生成文字字符串
-	settextcolor(RGB(255, 0, 0));  // 设置文字颜色
-	settextstyle(80, 0, _T("黑体")); // 设置文字大小、字体
-	outtextxy(WIDTH * 2 / 5, HEIGHT / 4, s1);
-
-	_stprintf_s(s2, _T("Press Any Key Start")); // 生成文字字符串
-	settextstyle(40, 0, _T("黑体")); // 设置文字大小、字体
-	settextcolor(RGB(255, 255, 255));  // 设置文字颜色
-	outtextxy(WIDTH*2/5-30, HEIGHT*3/4, s2);
+	IMAGE im_title, im_press, im_s1, im_s2,im_author;
+	loadimage(&im_title, _T(".\\image\\title.png"));
+	loadimage(&im_press, _T(".\\image\\press_start.png"));
+	loadimage(&im_s1, _T(".\\image\\s1.png"));
+	loadimage(&im_s2, _T(".\\image\\s2.png"));
+	loadimage(&im_author, _T(".\\image\\author.png"));
+	putimagePng(WIDTH / 5+50, HEIGHT / 5, &im_title);
+	putimagePng(WIDTH / 5+100, HEIGHT / 5+200, &im_press);
+	putimagePng(WIDTH*3/6+120,0, &im_author);
 	_getch();
 	putimage(0, 0, &bk);
-	TCHAR s3[100];
-	_stprintf_s(s3, _T("城市爆发了新冠疫情，你成了一名医护工作者支援前线")); // 生成文字字符串
-	settextcolor(RGB(255, 0, 0));  // 设置文字颜色
-	settextstyle(30, 0, _T("黑体")); // 设置文字大小、字体
-	outtextxy(WIDTH * 2 / 5 - 400, HEIGHT / 4, s3);
-	_stprintf_s(s3, _T("快想办法消灭病毒并救助患者！！！")); // 生成文字字符串
-	outtextxy(WIDTH * 2 / 5 - 200, HEIGHT / 4+50, s3);
-	_stprintf_s(s3, _T("AD左右移动，W跳跃，J发射子弹")); // 生成文字字符串
-	outtextxy(WIDTH * 2 / 5 - 200, HEIGHT / 4 + 100, s3);
+	putimagePng(WIDTH / 6 , HEIGHT / 6+30, &im_s1);
+	putimagePng(WIDTH / 6 , HEIGHT / 6+200, &im_s2);
+	Sleep(1000);
 	_getch();
 
 }

@@ -5,7 +5,6 @@
 #include "Bullet.h"
 #include "Enemy.h"
 extern void PlayMusicOnce(TCHAR fileName[80]);
-extern void _PlayMusicOnce(TCHAR fileName[80]);
 enum PlayerStates
 {
 	stand_right, stand_left,attack_right,attack_left
