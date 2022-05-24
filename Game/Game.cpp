@@ -15,7 +15,6 @@ void Show();
 void UpdateWithInput();
 void UpdateWithoutInput();
 void PlayMusicOnce(TCHAR fileName[80]);
-
 int getRand(int min, int max)
 {
 	return (rand() % (max - min + 1)) + min;
@@ -35,7 +34,7 @@ int main()
 }
 void StartUp()
 {
-	mciSendString(_T("open .\\bgm\\bgm1.mp3 alias bkmusic"), NULL, 0, NULL);//打开背景音乐
+	mciSendString(_T("open .\\bgm\\bgm_.mp3 alias bkmusic"), NULL, 0, NULL);//打开背景音乐
 	mciSendString(_T("play bkmusic repeat"), NULL, 0, NULL);  // 循环播放
 	initgraph(WIDTH, HEIGHT);	
 	sc.start_frame();

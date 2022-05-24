@@ -1,6 +1,7 @@
 #pragma once
 #include "publicHeader.h"
 #include "Enemy.h"
+extern void PlayMusicOnce(TCHAR fileName[80]);
 class Bullet
 {
 public:

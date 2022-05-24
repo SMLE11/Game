@@ -5,12 +5,12 @@ void Enemy::init()
 {
 	if (type == 0)
 	{
-		loadimage(&im_show, _T(".\\image\\enemy.png"));
+		loadimage(&im_show, _T(".\\image\\enemy1.png"));
 		v_x = 0;
 	}
 	else
 	{
-		loadimage(&im_show, _T(".\\image\\zdz.png"));
+		loadimage(&im_show, _T(".\\image\\enemy2.png"));
 		v_x = 10;
 		
 	}

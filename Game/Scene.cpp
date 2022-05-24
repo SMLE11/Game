@@ -101,23 +101,23 @@ void Scene::start_frame()
 	putimage(0, 0, &bk);
 	TCHAR s1[20],s2[20]; // 字符串
 	setbkmode(TRANSPARENT); // 文字透明显示
-	_stprintf_s(s1, _T("逃出精神病院")); // 生成文字字符串
+	_stprintf_s(s1, _T("抗疫有我")); // 生成文字字符串
 	settextcolor(RGB(255, 0, 0));  // 设置文字颜色
 	settextstyle(80, 0, _T("黑体")); // 设置文字大小、字体
-	outtextxy(WIDTH * 2 / 5-100, HEIGHT / 4, s1);
+	outtextxy(WIDTH * 2 / 5, HEIGHT / 4, s1);
 
 	_stprintf_s(s2, _T("Press Any Key Start")); // 生成文字字符串
 	settextstyle(40, 0, _T("黑体")); // 设置文字大小、字体
 	settextcolor(RGB(255, 255, 255));  // 设置文字颜色
-	outtextxy(WIDTH*2/5-20, HEIGHT*3/4, s2);
+	outtextxy(WIDTH*2/5-30, HEIGHT*3/4, s2);
 	_getch();
-	cleardevice();
+	putimage(0, 0, &bk);
 	TCHAR s3[100];
-	_stprintf_s(s3, _T("一觉醒来，你发现自己被困在了精神病院里，这里据说藏这什么恐怖的东西！！！")); // 生成文字字符串
+	_stprintf_s(s3, _T("城市爆发了新冠疫情，你成了一名医护工作者支援前线")); // 生成文字字符串
 	settextcolor(RGB(255, 0, 0));  // 设置文字颜色
 	settextstyle(30, 0, _T("黑体")); // 设置文字大小、字体
 	outtextxy(WIDTH * 2 / 5 - 400, HEIGHT / 4, s3);
-	_stprintf_s(s3, _T("快想办法逃出去！！！")); // 生成文字字符串
+	_stprintf_s(s3, _T("快想办法消灭病毒并救助患者！！！")); // 生成文字字符串
 	outtextxy(WIDTH * 2 / 5 - 200, HEIGHT / 4+50, s3);
 	_stprintf_s(s3, _T("AD左右移动，W跳跃，J发射子弹")); // 生成文字字符串
 	outtextxy(WIDTH * 2 / 5 - 200, HEIGHT / 4 + 100, s3);
@@ -156,7 +156,6 @@ void Scene::update()
 				fly.v_x = 10 + level * 3;
 			}
 			enemys.push_back(fly);
-			PlayMusicOnce(_T(".\\bgm\\laugh1.mp3"));
 		}
 	}
 	else

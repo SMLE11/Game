@@ -5,7 +5,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 extern void PlayMusicOnce(TCHAR fileName[80]);
-int a = 10;
+extern void _PlayMusicOnce(TCHAR fileName[80]);
 enum PlayerStates
 {
 	stand_right, stand_left,attack_right,attack_left
@@ -22,10 +22,9 @@ public:
 	bool isLand;
 	int attack_animId;
 	int cd;
+	int walk_music_cd;
 	Bullet bullet[30];
-	IMAGE zdz;
-	float zdz_height;
-	bool death;
+
 public:
 
 	void getImage();

@@ -62,6 +62,7 @@ void Bullet::CollideEnemy_detect(Enemy& enemy)
 	if (x_center<enemy.loc_left + width && x_center>enemy.loc_left &&
 		y_center<enemy.loc_bottom && y_center>enemy.loc_bottom - enemy.height)
 	{
+		PlayMusicOnce(_T(".\\bgm\\enemy_death.mp3"));
 		enemy.alive = false;
 		flag = false;
 		step = 0;

@@ -42,6 +42,7 @@ void Player::runRight(Scene& sc)
 					is_collide = true;
 					if (i == sc.lands.size() - 1)
 					{
+						loc_y = sc.lands[sc.lands.size() - 1].loc_bottom;
 						next_level(sc);
 						return;
 					}
@@ -55,6 +56,15 @@ void Player::runRight(Scene& sc)
 	
 	if (!is_collide)
 	{
+		if (walk_music_cd == 0)
+		{
+			PlayMusicOnce(_T(".\\bgm\\walk.mp3"));
+			walk_music_cd = 20;
+		}
+		else
+		{
+			walk_music_cd--;
+		}
 		if (loc_right + v_x > WIDTH * 2 / 3)
 		{
 			loc_x = WIDTH * 2 / 3 - width;
@@ -90,6 +100,15 @@ void Player::runLeft(Scene& sc)
 
 	if (!is_collide)
 	{
+		if (walk_music_cd == 0)
+		{
+			PlayMusicOnce(_T(".\\bgm\\walk.mp3"));
+			walk_music_cd = 20;
+		}
+		else
+		{
+			walk_music_cd--;
+		}
 		if (loc_x - v_x < WIDTH / 3)
 		{
 			loc_x = WIDTH / 3;
@@ -103,8 +122,11 @@ void Player::runLeft(Scene& sc)
 }
 void Player::jump()
 {
-	if(isLand)
+	if (isLand)
+	{
+		PlayMusicOnce(_T(".\\bgm\\jump.mp3"));
 		v_y = -20;
+	}
 }
 void Player::attack()
 {
@@ -170,8 +192,7 @@ void Player::updateAndCheckY(Scene& sc)
 }
 void Player::init()
 {
-	loadimage(&zdz, _T(".\\image\\zdzbig.png"));
-	zdz_height = zdz.getheight();
+	
 	getImage();
 	v_x = 10;
 	v_y = 0;
@@ -189,6 +210,7 @@ void Player::init()
 		bullet[i].init();
 	}
 	cd = 0;
+	walk_music_cd = 0;
 	//TCHAR s[10];
 	//_stprintf_s(s, _T("%d %d"), (int)loc_x, (int)height);		// 高版本 VC 推荐使用 _stprintf_s 函数
 	//outtextxy(0, 60, s);
@@ -246,6 +268,8 @@ void Player::isOnLand(Land& land)
 }
 void Player::next_level(Scene& sc)
 {
+	PlayMusicOnce(_T(".\\bgm\\win.mp3"));
+	Sleep(2000);
 	init();
 	sc.next_level();
 }
@@ -261,7 +285,7 @@ void Player::creat_bullet()
 	{
 		bullet[idx].flag = true;
 		cd = 10;
-
+		PlayMusicOnce(_T(".\\bgm\\attack.mp3"));
 		if (ps == attack_right||ps==stand_right)
 		{
 			bullet[idx].set_direction(0);
@@ -301,13 +325,10 @@ void Player::update(Scene& sc)
 }
 void Player::restart(Scene& sc)
 {
-	PlayMusicOnce(_T(".\\bgm\\laugh2.mp3"));
-	EndBatchDraw();
-	cleardevice();
-	putimage(0, 0, &sc.blood);
-	putimagePng(400, 100,&zdz);
+	draw();
+	sc.draw();
+	PlayMusicOnce(_T(".\\bgm\\player_death.mp3"));
 	Sleep(2000);
-	BeginBatchDraw();
 	init();
 	sc.init();
 }
